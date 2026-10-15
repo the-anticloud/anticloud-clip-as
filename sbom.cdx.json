@@ -1,0 +1,46 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:f4584566-572b-583a-afd6-18996161976f",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-10-12T06:10:08Z",
+    "component": {
+      "type": "application",
+      "name": "CLIP_AS",
+      "version": "280f4736686b",
+      "bom-ref": "pkg:generic/anticloud/CLIP_AS@280f4736686b",
+      "purl": "pkg:generic/anticloud/CLIP_AS@280f4736686b",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    "properties": [
+      {
+        "name": "anticloud:source-commit",
+        "value": "280f4736686b4436aa73c9219a7c4a9669ae78f0"
+      },
+      {
+        "name": "anticloud:source-url",
+        "value": ""
+      },
+      {
+        "name": "anticloud:tier",
+        "value": "tier-agent"
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "serverless-api-gateway-caching",
+      "version": "^1.6.1",
+      "purl": "pkg:npm/serverless-api-gateway-caching@^1.6.1",
+      "bom-ref": "npm/serverless-api-gateway-caching@^1.6.1"
+    }
+  ]
+}
