@@ -1,26 +1,63 @@
 # CLIP_AS
 
-> Search photos on Unsplash using natural language descriptions. The search is powered by OpenAI's [CLIP model](https://github.com/openai/CLIP) and the [Unsplash Dataset](https://unsplash.com/data).
+> CLIP-as-service is a low-latency high-scalability service for embedding images and text. It can be easily integrated as a microservice into neural search solutions.
 
-**Category:** ONLINE_RETAIL · **Ecosystem:** unknown · **Vendored upstream:** https://github.com/haltakov/natural-language-image-search · **Pinned commit:** `280f4736686b4436aa73c9219a7c4a9669ae78f0` · **Vendor:** Anticloud FZ LLE
-
-> **Note:** this package vendors `https://github.com/haltakov/natural-language-image-search` as the implementation for the `CLIP_AS` slot. The vendored repository name differs from the package name; the pin above is the exact commit vendored here.
+**Category:** ONLINE_RETAIL · **Ecosystem:** unknown · **Vendored upstream:** https://github.com/jina-ai/clip-as-service · **Pinned commit:** `03410570d4398084f5ca5c88ad968248e0f3fc5d` · **Vendor:** Anticloud FZ LLE
 
 ## What This Project Is
 
-Search photos on Unsplash using natural language descriptions. The search is powered by OpenAI's [CLIP model](https://github.com/openai/CLIP) and the [Unsplash Dataset](https://unsplash.com/data).
+CLIP-as-service is a low-latency high-scalability service for embedding images and text. It can be easily integrated as a microservice into neural search solutions.
 
 This is the upstream project, vendored at the pinned commit above and packaged offline-first. The 12 improvements Anticloud adds live in `anticloud/` and are described under *Anticloud Overlay* below. Every fact in this file traces to a file in this directory.
 
 ## Installation
 
+from clip_client import Client
+
+c = Client(
+    'grpcs://<your-inference-address>-grpc.wolf.jina.ai',
+    credential={'Authorization': '<your access token>'},
+)
+
+r = c.encode(
+    [
+        'First do it',
+        'then do it right',
+        'then do it better',
+        'https://picsum.photos/200',
+    ]
+)
+print(r)
 ```
-# See the upstream README (linked above) for build steps.
-```
+</td>
+</tr>
+</table>
 
 ## Usage
 
-See the upstream README (linked above) for usage. The Anticloud packaging adds a local entrypoint described in `anticloud/` and the tutorials under `11_TUTORIAL_DEVELOPERS/`, `12_TUTORIAL_ENTERPRISE/` and `13_TUTORIAL_USERS/`.
+1. Start the server: `python -m clip_server`. Remember its address and port.
+2. Create a client:
+   ```python
+    from clip_client import Client
+
+    c = Client('grpc://0.0.0.0:51000')
+    ```
+3. To get sentence embedding:
+    ```python
+    r = c.encode(['First do it', 'then do it right', 'then do it better'])
+
+    print(r.shape)  # [3, 512]
+    ```
+4. To get image embedding:
+    ```python
+    r = c.encode(['apple.png',  # local image
+                  'https://clip-as-service.jina.ai/_static/favicon.png',  # remote image
+                  'data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7'])  # in image URI
+
+    print(r.shape)  # [3, 512]
+    ```
+
+More comprehensive server and client user guides can be found in the [docs](https://clip-as-service.jina.ai/).
 
 ## Anticloud Overlay
 
@@ -62,7 +99,7 @@ The upstream licence is preserved in `LICENSE` and `THIRD_PARTY_LICENSES/`. The 
 SHA3-256 of `BENCH.json`:
 
 ```
-17b12e34d1295551b33cef0c69e86d8a539572f0a122ac4bbb21115e97fe66f8
+0ac5b27abe17d5f1cce54ef53f3946f84551a1f398aac16faf7d517d9e938a76
 ```
 
 Recompute the hash above and compare — any drift means the package has been tampered with and the seal is invalid. This is a self-assessment; no external audit has been performed and a SOC 2 / NIST independent audit is committed post-funding.

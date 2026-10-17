@@ -2,13 +2,16 @@
  "schema": "anticloud.tier-bench/1",
  "project": "CLIP_AS",
  "source": {
-  "repo_path": "E:\\fenta\\Downloads\\The Anticloud\\ANTICLOUD_REPOS\\ONLINE_RETAIL\\CLIP_AS\\UPSTREAM_CLONE",
   "git": {
-   "head": "280f4736686b4436aa73c9219a7c4a9669ae78f0",
-   "url": "https://github.com/haltakov/natural-language-image-search",
-   "branch": "main",
-   "committed_at": "",
-   "sha_verified_from": "GitHub API substitute swap 2026-10-12 | unified 2026-10-14 (API-exists + content/clone anchor)"
+   "url": "https://github.com/jina-ai/clip-as-service",
+   "head": "03410570d4398084f5ca5c88ad968248e0f3fc5d",
+   "sha_verified_from": "revendor archive 2026-10-17",
+   "previous_substitute": "https://github.com/haltakov/natural-language-image-search",
+   "paths_skipped_windows_incompatible": 2,
+   "paths_skipped_sample": [
+    ".github/README-img/And-you-saw-the-old-housekeeper,-I-suppose?-Poor-Reynolds,-she-was-always-very-fond-of-me.png",
+    ".github/README-img/Did-you-see-him-while-you-were-at-Lambton?-I-thought-I-understood-from-the-Gardiners-that-you-had.png"
+   ]
   }
  },
  "metrics": {
